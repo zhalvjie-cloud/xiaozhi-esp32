@@ -4,7 +4,6 @@
 #include "config.h"
 #include "display/lcd_display.h"
 #include "led/single_led.h"
-#include "mcp_server.h"
 #include "wifi_board.h"
 
 #include <driver/i2c_master.h>
@@ -18,7 +17,6 @@
 
 #define TAG "LCDWikiES3C28P"
 
-// FT6336G 电容触摸驱动 (I2C 地址 0x38)
 #define FT6336_I2C_ADDR 0x38
 static i2c_master_dev_handle_t touch_dev_handle = NULL;
 
@@ -98,7 +96,6 @@ private:
         panel_config.reset_gpio_num = DISPLAY_RST_PIN;
         panel_config.rgb_ele_order = DISPLAY_RGB_ORDER;
         panel_config.bits_per_pixel = 16;
-        // ILI9341 兼容 ESP-IDF 内置 ST7789/标准 MIPI 指令集
         ESP_ERROR_CHECK(esp_lcd_new_panel_st7789(panel_io, &panel_config, &panel));
 
         esp_lcd_panel_reset(panel);
